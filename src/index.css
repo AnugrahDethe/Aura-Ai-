@@ -1,0 +1,362 @@
+@import "tailwindcss";
+
+@theme {
+  /* ── All colors from Stitch project 12933139627636330683 ── */
+  --color-on-surface: #e5e2e3;
+  --color-tertiary: #f9faff;
+  --color-inverse-surface: #e5e2e3;
+  --color-outline: #849495;
+  --color-on-tertiary: #233143;
+  --color-primary: #e9feff;
+  --color-surface: #131314;
+  --color-surface-container-low: #1c1b1c;
+  --color-secondary: #d4bbff;
+  --color-inverse-primary: #00696e;
+  --color-surface-container: #201f20;
+  --color-on-secondary-fixed-variant: #55338d;
+  --color-secondary-fixed-dim: #d4bbff;
+  --color-surface-container-lowest: #0e0e0f;
+  --color-on-primary-container: #006c71;
+  --color-on-error: #690005;
+  --color-primary-fixed-dim: #00dce5;
+  --color-on-primary-fixed-variant: #004f53;
+  --color-surface-variant: #353436;
+  --color-on-background: #e5e2e3;
+  --color-surface-dim: #131314;
+  --color-background: #131314;
+  --color-tertiary-fixed-dim: #b9c8de;
+  --color-error: #ffb4ab;
+  --color-inverse-on-surface: #313031;
+  --color-on-error-container: #ffdad6;
+  --color-primary-fixed: #63f7ff;
+  --color-on-tertiary-fixed: #0d1c2d;
+  --color-on-surface-variant: #b9caca;
+  --color-on-primary: #003739;
+  --color-surface-tint: #00dce5;
+  --color-primary-container: #00f5ff;
+  --color-on-primary-fixed: #002021;
+  --color-surface-container-high: #2a2a2b;
+  --color-on-tertiary-fixed-variant: #39485a;
+  --color-surface-bright: #3a393a;
+  --color-surface-container-highest: #353436;
+  --color-on-secondary: #3e1975;
+  --color-tertiary-container: #d0dff5;
+  --color-on-secondary-container: #c6a5ff;
+  --color-secondary-fixed: #ebdcff;
+  --color-outline-variant: #3a494a;
+  --color-on-tertiary-container: #546275;
+  --color-on-secondary-fixed: #270058;
+  --color-error-container: #93000a;
+  --color-tertiary-fixed: #d4e4fa;
+  --color-secondary-container: #55338d;
+
+  /* ── Spacing tokens ── */
+  --spacing-xs:            4px;
+  --spacing-base:          8px;
+  --spacing-sm:            12px;
+  --spacing-md:            24px;
+  --spacing-lg:            48px;
+  --spacing-xl:            80px;
+  --spacing-gutter:        24px;
+  --spacing-container-max: 1200px;
+
+  /* ── Border-radius tokens ── */
+  --radius-DEFAULT: 0.25rem;
+  --radius-lg:      0.5rem;
+  --radius-xl:      0.75rem;
+  --radius-full:    9999px;
+
+  /* ── Font families ── */
+  --font-display-lg:   Inter, sans-serif;
+  --font-body-md:      Inter, sans-serif;
+  --font-body-lg:      Inter, sans-serif;
+  --font-label-sm:     Geist, sans-serif;
+  --font-headline-md:  Inter, sans-serif;
+
+  /* ── Font sizes / line-heights / weights ── */
+  --text-display-lg:                48px;
+  --text-display-lg--line-height:   56px;
+  --text-display-lg--letter-spacing: -0.02em;
+  --text-display-lg--font-weight:   700;
+
+  --text-body-md:              16px;
+  --text-body-md--line-height: 24px;
+  --text-body-md--font-weight: 400;
+
+  --text-body-lg:              18px;
+  --text-body-lg--line-height: 28px;
+  --text-body-lg--font-weight: 400;
+
+  --text-label-sm:                12px;
+  --text-label-sm--line-height:   16px;
+  --text-label-sm--letter-spacing: 0.05em;
+  --text-label-sm--font-weight:   500;
+
+  --text-headline-md:              24px;
+  --text-headline-md--line-height: 32px;
+  --text-headline-md--font-weight: 600;
+}
+
+/* ── Base styles ── */
+@layer base {
+  html, body {
+    background-color: #131314;
+    color: #e5e2e3;
+    overflow: hidden;
+    height: 100%;
+  }
+  * { box-sizing: border-box; }
+}
+
+/* ================================================================
+   ALL CUSTOM CSS — exact copy of <style> block from Stitch HTML
+   ================================================================ */
+
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+.glass-panel {
+  background: rgba(19, 19, 20, 0.4);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.orb-glow {
+  filter: blur(60px);
+  animation: pulse 8s infinite alternate ease-in-out;
+}
+
+@keyframes pulse {
+  0%   { transform: translate(-50%, -50%) scale(1);    opacity: 0.6; }
+  50%  { transform: translate(-50%, -50%) scale(1.1);  opacity: 0.8; }
+  100% { transform: translate(-50%, -50%) scale(0.95); opacity: 0.5; }
+}
+
+.talking .orb-glow {
+  animation: talkingPulse 1s infinite ease-in-out;
+}
+
+@keyframes talkingPulse {
+  0%   { transform: translate(-50%, -50%) scale(1);    opacity: 0.7; filter: blur(60px) hue-rotate(0deg); }
+  25%  { transform: translate(-50%, -50%) scale(1.15);  opacity: 1;   filter: blur(70px) hue-rotate(30deg); }
+  50%  { transform: translate(-50%, -50%) scale(1.05);  opacity: 0.8; filter: blur(65px) hue-rotate(60deg); }
+  75%  { transform: translate(-50%, -50%) scale(1.2);   opacity: 0.9; filter: blur(75px) hue-rotate(30deg); }
+  100% { transform: translate(-50%, -50%) scale(1);    opacity: 0.7; filter: blur(60px) hue-rotate(0deg); }
+}
+
+.ai-orb-inner {
+  background: radial-gradient(circle at 30% 30%, #63f7ff 0%, #d4bbff 50%, #00696e 100%);
+  animation: orbRotate 10s linear infinite, orbBreathe 4s ease-in-out infinite;
+}
+
+@keyframes orbRotate {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes orbBreathe {
+  0%, 100% { transform: scale(1)    rotate(0deg); }
+  50%       { transform: scale(1.05) rotate(180deg); }
+}
+
+.talking .ai-orb-inner {
+  animation: talkingOrbRotate 2s linear infinite, talkingOrbBreathe 0.5s ease-in-out infinite;
+}
+
+@keyframes talkingOrbRotate {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes talkingOrbBreathe {
+  0%, 100% { transform: scale(1);    box-shadow: 0 0 30px rgba(99, 247, 255, 0.5); }
+  25%      { transform: scale(1.08); box-shadow: 0 0 50px rgba(99, 247, 255, 0.8), 0 0 80px rgba(212, 187, 255, 0.5); }
+  50%      { transform: scale(1.02); box-shadow: 0 0 40px rgba(99, 247, 255, 0.6), 0 0 60px rgba(212, 187, 255, 0.4); }
+  75%      { transform: scale(1.1);  box-shadow: 0 0 60px rgba(99, 247, 255, 0.9), 0 0 100px rgba(212, 187, 255, 0.6); }
+}
+
+.wave-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 2px solid rgba(99, 247, 255, 0.3);
+  pointer-events: none;
+}
+
+.thinking .wave-ring {
+  animation: thinkingWave 3s infinite ease-out;
+}
+
+.talking .wave-ring {
+  animation: talkingWave 1.5s infinite cubic-bezier(0.4, 0, 0.2, 1);
+  border-color: rgba(212, 187, 255, 0.5);
+}
+
+@keyframes thinkingWave {
+  0%   { width: 100%; height: 100%; opacity: 0.5; }
+  100% { width: 180%; height: 180%; opacity: 0; }
+}
+
+@keyframes talkingWave {
+  0%   { width: 100%;  height: 100%;  opacity: 0.8; border-width: 4px; box-shadow: 0 0 20px rgba(212, 187, 255, 0.3); }
+  50%  { width: 175%;  height: 175%;  opacity: 0.5; border-width: 2px; box-shadow: 0 0 40px rgba(212, 187, 255, 0.5); }
+  100% { width: 250%;  height: 250%;  opacity: 0;   border-width: 1px; box-shadow: 0 0 60px rgba(212, 187, 255, 0.2); }
+}
+
+@keyframes textFade {
+  0%, 100% { opacity: 0.4; }
+  50%       { opacity: 1; }
+}
+
+.voice-wave {
+  animation: wave 2s infinite ease-in-out;
+}
+
+@keyframes wave {
+  0%, 100% { height: 10px; }
+  50%       { height: 40px; }
+}
+
+.talking .voice-wave {
+  animation: talkingVoiceWave 0.3s infinite ease-in-out;
+}
+
+@keyframes talkingVoiceWave {
+  0%, 100% {
+    height: 8px;
+    background: linear-gradient(to top, #63f7ff, #d4bbff);
+    box-shadow: 0 0 10px rgba(99, 247, 255, 0.5);
+  }
+  25% {
+    height: 35px;
+    background: linear-gradient(to top, #d4bbff, #63f7ff);
+    box-shadow: 0 0 20px rgba(212, 187, 255, 0.7);
+  }
+  50% {
+    height: 20px;
+    background: linear-gradient(to top, #63f7ff, #d4bbff);
+    box-shadow: 0 0 15px rgba(99, 247, 255, 0.6);
+  }
+  75% {
+    height: 45px;
+    background: linear-gradient(to top, #d4bbff, #63f7ff);
+    box-shadow: 0 0 25px rgba(212, 187, 255, 0.8);
+  }
+}
+
+/* Background ambient orbs animation when talking */
+.is-talking .bg-orb-1 {
+  animation: talkingBgPulse 2s infinite ease-in-out;
+}
+
+.is-talking .bg-orb-2 {
+  animation: talkingBgPulse 2.5s infinite ease-in-out reverse;
+}
+
+.is-talking .bg-orb-3 {
+  animation: talkingBgPulse 3s infinite ease-in-out;
+}
+
+.is-talking .bg-orb-4 {
+  animation: talkingBgPulse 1.8s infinite ease-in-out;
+}
+
+.is-talking .bg-orb-5 {
+  animation: talkingBgPulse 2.2s infinite ease-in-out reverse;
+}
+
+.is-talking .bg-orb-6 {
+  animation: talkingBgPulse 2.8s infinite ease-in-out;
+}
+
+/* Subtle ambient animation for background orbs always */
+.bg-orb-1 {
+  animation: ambientFloat 8s infinite ease-in-out;
+}
+
+.bg-orb-2 {
+  animation: ambientFloat 10s infinite ease-in-out reverse;
+}
+
+.bg-orb-3 {
+  animation: ambientFloat 12s infinite ease-in-out;
+}
+
+.bg-orb-4 {
+  animation: ambientFloat 7s infinite ease-in-out;
+}
+
+.bg-orb-5 {
+  animation: ambientFloat 9s infinite ease-in-out reverse;
+}
+
+.bg-orb-6 {
+  animation: ambientFloat 11s infinite ease-in-out;
+}
+
+@keyframes talkingBgPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.1;
+    filter: blur(120px);
+  }
+  50% {
+    transform: scale(1.3);
+    opacity: 0.2;
+    filter: blur(150px);
+  }
+}
+
+@keyframes ambientFloat {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(10px, -10px) scale(1.05);
+  }
+  66% {
+    transform: translate(-10px, 10px) scale(0.95);
+  }
+}
+
+@keyframes errorGlow {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(255, 0, 0, 0.5), 0 0 10px rgba(255, 0, 0, 0.3), 0 0 15px rgba(255, 0, 0, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.8), 0 0 20px rgba(255, 0, 0, 0.5), 0 0 30px rgba(255, 0, 0, 0.3);
+  }
+}
+
+.animate-error-glow {
+  animation: errorGlow 2s infinite ease-in-out;
+}
+
+/* Login modal styles */
+.modal-backdrop {
+  backdrop-filter: blur(6px);
+}
+
+.login-modal input[type="email"],
+.login-modal input[type="password"] {
+  outline: none;
+}
+
+.login-modal button[type="submit"] {
+  transition: transform 120ms ease, box-shadow 120ms ease;
+}
+
+.login-modal button[type="submit"]:active {
+  transform: translateY(1px);
+}
+
+.password-toggle { background: transparent; border: none; cursor: pointer; padding: 4px; }
+.password-toggle span { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+
+.strength-meter { max-width: 360px; }
+.strength-meter .bg-red-500 { background: linear-gradient(90deg, #ff6b6b, #ff4d4d); }
+.strength-meter .bg-yellow-400 { background: linear-gradient(90deg, #ffd166, #ffb86b); }
+.strength-meter .bg-green-400 { background: linear-gradient(90deg, #7ef3c5, #38d39f); }
