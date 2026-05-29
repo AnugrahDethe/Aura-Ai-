@@ -5,5 +5,5 @@ Flask-SQLAlchemy==3.1.1
 Flask-JWT-Extended==4.6.0
 bcrypt==4.1.2
 gunicorn==21.2.0
-psycopg[binary]
+psycopg2-binary==2.9.10
 protobuf==5.29.3
