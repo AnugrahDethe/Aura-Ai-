@@ -33,8 +33,6 @@ export default function App() {
   const [showSignup, setShowSignup] = useState(false);
   const [loginPasswordVisible, setLoginPasswordVisible] = useState(false);
   const [signupPasswordVisible, setSignupPasswordVisible] = useState(false);
-  const [signupConfirmVisible, setSignupConfirmVisible] = useState(false);
-  const [signupPassword, setSignupPassword] = useState('');
 
   const [token, setToken] = useState(localStorage.getItem('aura_token') || '');
   const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem('aura_token'));
@@ -326,7 +324,7 @@ export default function App() {
     if (!textToSend) return;
 
     const messageSetter = isVoiceMessage ? setVoiceMessages : setChatMessages;
-    messageSetter(prev => [...prev, { text: textToSend, isUser: true }]);
+    messageSetter(prev => [...prev, { text: textToSend, isUser: true, isError: false }]);
     if (!textParam) setInputText('');
 
     // Check for web action first (open apps, play YouTube, search Google)
@@ -348,7 +346,7 @@ export default function App() {
       });
 
       const aiResponse = response.data.response;
-      messageSetter(prev => [...prev, { text: aiResponse, isUser: false }]);
+      messageSetter(prev => [...prev, { text: aiResponse, isUser: false, isError: false }]);
       if (shouldSpeak) speakResponse(aiResponse);
     } catch (error: any) {
       console.error('Error sending message:', error);
@@ -360,7 +358,7 @@ export default function App() {
         try {
           const retry = await axios.post(`${API_BASE_URL}/chat`, { message: textToSend }, { timeout: 15000 });
           const aiResponse = retry.data.response;
-          messageSetter(prev => [...prev, { text: aiResponse, isUser: false }]);
+          messageSetter(prev => [...prev, { text: aiResponse, isUser: false, isError: false }]);
           if (shouldSpeak) speakResponse(aiResponse);
           return;
         } catch { /* fall through to error display */ }
@@ -373,35 +371,6 @@ export default function App() {
     }
   }, [inputText, speakResponse, token, executeWebAction]);
 
-  // Small password strength helper component
-  function PasswordStrength({ password }: { password: string }) {
-    const score = (() => {
-      let s = 0;
-      if (!password) return 0;
-      if (password.length >= 8) s += 1;
-      if (password.length >= 12) s += 1;
-      if (/[A-Z]/.test(password)) s += 1;
-      if (/[0-9]/.test(password)) s += 1;
-      if (/[^A-Za-z0-9]/.test(password)) s += 1;
-      return s;
-    })();
-
-    const pct = Math.round((score / 5) * 100);
-    const label = score <= 1 ? 'Weak' : score <= 3 ? 'Medium' : 'Strong';
-    const color = score <= 1 ? 'bg-red-500' : score <= 3 ? 'bg-yellow-400' : 'bg-green-400';
-
-    return (
-      <div className="strength-meter">
-        <div className="w-full bg-white/5 rounded-full h-2 overflow-hidden">
-          <div className={`h-2 ${color}`} style={{ width: `${pct}%`, boxShadow: '0 6px 22px rgba(0,0,0,0.25)' }}></div>
-        </div>
-        <div className="flex items-center justify-between mt-2 text-on-surface-variant text-xs">
-          <span>{label}</span>
-          <span>{pct}%</span>
-        </div>
-      </div>
-    );
-  }
 
   const handleVoiceSend = useCallback((transcript: string) => {
     sendMessage(transcript, true, true);
