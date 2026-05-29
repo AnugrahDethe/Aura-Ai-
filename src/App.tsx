@@ -164,7 +164,6 @@ export default function App() {
 
   const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (signupPassword !== signupPasswordVal) return;
     try {
       const response = await axios.post(`${API_BASE_URL}/auth/signup`, {
         fullName: signupFullName,
