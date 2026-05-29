@@ -7,6 +7,13 @@ import google.generativeai as genai
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
 from models import db, User, Message
 
+@app.route("/")
+def home():
+    return jsonify({
+        "status": "success",
+        "message": "Aura AI Backend Running"
+    })
+    
 app = Flask(__name__)
 CORS(app)
 
