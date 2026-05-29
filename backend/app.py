@@ -19,6 +19,13 @@ db_url = os.environ.get('DATABASE_URL')
 if db_url and db_url.startswith("postgres://"):
     db_url = db_url.replace("postgres://", "postgresql://", 1)
 
+# Add SSL mode and connection pooling for Supabase
+if db_url and "supabase" in db_url.lower():
+    if "?" in db_url:
+        db_url += "&sslmode=require"
+    else:
+        db_url += "?sslmode=require"
+
 app.config['SQLALCHEMY_DATABASE_URI'] = db_url or ('sqlite:///' + os.path.join(basedir, 'aura.db'))
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['JWT_SECRET_KEY'] = os.environ.get(
